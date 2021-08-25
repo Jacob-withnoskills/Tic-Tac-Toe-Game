@@ -9,7 +9,7 @@
 
 int checkwin();
 char square[10] = { 'o', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-/*char board[n][n] ={ 'o', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+/*char board[n][n] ={{0,1,2},{3,4,5},{6,7,8}}; ;
 bool rowCrossed(char board[n][n]);
 bool columnCrossed(char board[n][n]);
 bool diagonalCrossed(char board[n][n]);
