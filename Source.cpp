@@ -10,7 +10,7 @@
 //int checkwin();
 //char square[10] = { 'o', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 char board[n][n] ={{'1','2','3'},{'4','5','6'},{'7','8','9'}}; 
-int moves[n * n];
+//int moves[n * n];
 bool rowCrossed(char board[n][n]);
 bool columnCrossed(char board[n][n]);
 bool diagonalCrossed(char board[n][n]);
