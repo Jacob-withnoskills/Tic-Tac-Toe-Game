@@ -1,19 +1,20 @@
-
 #include<stdio.h>
 #include<stdlib.h>
 #include <conio.h>
 #include<Windows.h>
 #include<stdbool.h>
-//#define n 3
+#include <time.h>
+#define n 3
 #pragma warning(disable : 4996)
 
-int checkwin();
-char square[10] = { 'o', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-/*char board[n][n] ={{0,1,2},{3,4,5},{6,7,8}}; ;
+//int checkwin();
+//char square[10] = { 'o', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+char board[n][n] ={{'1','2','3'},{'4','5','6'},{'7','8','9'}}; 
+int moves[n * n];
 bool rowCrossed(char board[n][n]);
 bool columnCrossed(char board[n][n]);
 bool diagonalCrossed(char board[n][n]);
-*/
+
 struct coordinate
 {
     int x;
@@ -53,29 +54,33 @@ void load()
             board[i][j] = ' ';
     }
 
+    for (int i = 0; i < n * n; i++)
+        moves[i] = i;
+
     return;
 }*/
 void displayboard()
 
 {
     system("cls");
+    gotoxy(36,14);
     printf("\n\n\tTic Tac Toe\n\n");
 
     printf("Player 1 (X)  -  Player 2 (O)\n\n\n");
 
 
     printf("     |     |     \n");
-    printf("  %c  |  %c  |  %c \n", square[1], square[2], square[3]);
+    printf("  %c  |  %c  |  %c \n", board[0][0], board[0][1], board[0][2]);
 
     printf("_____|_____|_____\n");
     printf("     |     |     \n");
 
-    printf("  %c  |  %c  |  %c \n", square[4], square[5], square[6]);
+    printf("  %c  |  %c  |  %c \n", board[1][0], board[1][1], board[1][2]);
 
     printf("_____|_____|_____\n");
     printf("     |     |     \n");
 
-    printf("  %c  |  %c  |  %c \n", square[7], square[8], square[9]);
+    printf("  %c  |  %c  |  %c \n", board[2][0], board[2][1], board[2][2]);
 
     printf("     |     |     \n\n");
 }
@@ -98,13 +103,13 @@ void showinstructions()
 
     return;
 }
-/*bool gameOver(char board[][n])
+bool gameOver(char board[][n])
 {
     return(rowCrossed(board) || columnCrossed(board)
         || diagonalCrossed(board));
-}*/
+}
 
-/*bool rowCrossed(char board[][n])
+bool rowCrossed(char board[][n])
 {
     for (int i = 0; i < n; i++)
     {
@@ -139,8 +144,7 @@ bool diagonalCrossed(char board[][n])
 
     return(false);
 }
-*/
-int playgame(char square[9])
+int playgame(char board[][n])
 {
     int player = 1, i, choice;
 
@@ -155,32 +159,32 @@ int playgame(char square[9])
 
         mark = (player == 1) ? 'X' : 'O';
 
-        if (choice == 1 && square[1] == '1')
-            square[1] = mark;
+        if (choice == 1 && board[0][0] == '0')
+            board[0][0] = mark;
 
-        else if (choice == 2 && square[2] == '2')
-            square[2] = mark;
+        else if (choice == 2 && board[0][1] == '1')
+            board[0][1] = mark;
 
-        else if (choice == 3 && square[3] == '3')
-            square[3] = mark;
+        else if (choice == 3 && board[0][2] == '2')
+            board[0][2] = mark;
 
-        else if (choice == 4 && square[4] == '4')
-            square[4] = mark;
+        else if (choice == 4 && board[1][0] == '3')
+            board[1][0] = mark;
 
-        else if (choice == 5 && square[5] == '5')
-            square[5] = mark;
+        else if (choice == 5 && board[1][1] == '4')
+            board[1][1] = mark;
 
-        else if (choice == 6 && square[6] == '6')
-            square[6] = mark;
+        else if (choice == 6 && board[1][2] == '5')
+            board[1][2]  = mark;
 
-        else if (choice == 7 && square[7] == '7')
-            square[7] = mark;
+        else if (choice == 7 && board[2][0] == '6')
+            board[2][0] = mark;
 
-        else if (choice == 8 && square[8] == '8')
-            square[8] = mark;
+        else if (choice == 8 && board[2][1] == '7')
+            board[2][1] = mark;
 
-        else if (choice == 9 && square[9] == '9')
-            square[9] = mark;
+        else if (choice == 9 && board[2][2] == '8')
+            board[2][2] = mark;
 
         else
         {
@@ -189,10 +193,10 @@ int playgame(char square[9])
             player--;
             getch();
         }
-        i = checkwin();
+        i = gameOver(board);
 
         player++;
-    } while (i == -1);
+    } while (i == false);
 
     displayboard();
 
@@ -206,7 +210,7 @@ int playgame(char square[9])
     return 0;
 }
 
-int checkwin()
+/*int checkwin()
 {
     if (square[1] == square[2] && square[2] == square[3])
         return 1;
@@ -239,12 +243,14 @@ int checkwin()
         return 0;
     else
         return  -1;
-}
+}*/
 int main()
 {
-    //load();
+    load();
     showinstructions();
-    playgame(square);
+    delay(2);
+    getch();
+    playgame(board);
     return 0;
 
 }
