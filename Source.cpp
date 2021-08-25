@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 #include<stdlib.h>
 #include <conio.h>
@@ -6,8 +7,11 @@
 #define n 3
 #pragma warning(disable : 4996)
 
-char board[][n];
+char board[n][n];
 int moves[n * n];
+bool rowCrossed(char board[n][n]);
+bool columnCrossed(char board[n][n]);
+bool diagonalCrossed(char board[n][n]);
 
 struct coordinate
 {
@@ -58,13 +62,17 @@ void displayboard()
 {
     system("cls");
     printf("\n\n");
-
+      
     printf("\t\t\t  %c | %c  | %c  \n", board[0][0],
-        board[0][1], board[0][2]);
+                             board[0][1], board[0][2]);
+    printf("\t\t\t--------------\n");
     printf("\t\t\t  %c | %c  | %c  \n", board[1][0],
-        board[1][1], board[1][2]);
+                             board[1][1], board[1][2]);
+    printf("\t\t\t--------------\n");
     printf("\t\t\t  %c | %c  | %c  \n\n", board[2][0],
-        board[2][1], board[2][2]);
+                             board[2][1], board[2][2]);
+   
+    return;
 }
 
 void showinstructions()
@@ -144,32 +152,32 @@ int playgame(char board[n][n])
 
         mark = (player == 1) ? 'X' : 'O';
 
-        if (choice == 1 && !gameOver(board))
+        if (choice == 1 )
             board[0][0] = mark;
 
-        else if (choice == 2 && !gameOver(board))
+        else if (choice == 2 )
             board[0][1] = mark;
 
-        else if (choice == 3 && !gameOver(board))
+        else if (choice == 3)
             board[0][2] = mark;
 
 
-        else if (choice == 4 && !gameOver(board))
+        else if (choice == 4)
             board[1][0] = mark;
 
-        else if (choice == 5 && !gameOver(board))
+        else if (choice == 5)
             board[1][1] = mark;
 
-        else if (choice == 6 && !gameOver(board))
+        else if (choice == 6)
             board[1][2] = mark;
 
-        else if (choice == 7 && !gameOver(board))
+        else if (choice == 7)
             board[2][0] = mark;
 
-        else if (choice == 8 && !gameOver(board))
+        else if (choice == 8 )
             board[2][1] = mark;
 
-        else if (choice == 9 && !gameOver(board))
+        else if (choice == 9)
             board[2][2] = mark;
 
 
@@ -183,7 +191,7 @@ int playgame(char board[n][n])
         i = gameOver(board);
 
         player++;
-    } while (i == -1);
+    } while (i==true);
 
     displayboard();
 
@@ -196,15 +204,12 @@ int playgame(char board[n][n])
 
     return 0;
 }
-/*int checkwin()
-{
-
-}*/
 
 int main()
 {
     load();
     showinstructions();
+    playgame(board);
     return 0;
 
 }
