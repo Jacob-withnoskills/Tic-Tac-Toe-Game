@@ -9,7 +9,7 @@
 
 //int checkwin();
 //char square[10] = { 'o', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-char board[n][n] ={{'1','2','3'},{'4','5','6'},{'7','8','9'}}; 
+char board[n][n] = { {'1','2','3'},{'4','5','6'},{'7','8','9'} };
 //int moves[n * n];
 bool rowCrossed(char board[n][n]);
 bool columnCrossed(char board[n][n]);
@@ -47,23 +47,20 @@ void load()
 }
 /*void initialise(char board[][n])
 {
-
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
             board[i][j] = ' ';
     }
-
     for (int i = 0; i < n * n; i++)
         moves[i] = i;
-
     return;
 }*/
 void displayboard()
 
 {
     system("cls");
-    gotoxy(36,14);
+    gotoxy(36, 14);
     printf("\n\n\tTic Tac Toe\n\n");
 
     printf("Player 1 (X)  -  Player 2 (O)\n\n\n");
@@ -159,31 +156,31 @@ int playgame(char board[][n])
 
         mark = (player == 1) ? 'X' : 'O';
 
-        if (choice == 1 && board[0][0] == '0')
+        if (choice == 1 && board[0][0] == '1')
             board[0][0] = mark;
 
-        else if (choice == 2 && board[0][1] == '1')
+        else if (choice == 2 && board[0][1] == '2')
             board[0][1] = mark;
 
-        else if (choice == 3 && board[0][2] == '2')
+        else if (choice == 3 && board[0][2] == '3')
             board[0][2] = mark;
 
-        else if (choice == 4 && board[1][0] == '3')
+        else if (choice == 4 && board[1][0] == '4')
             board[1][0] = mark;
 
-        else if (choice == 5 && board[1][1] == '4')
+        else if (choice == 5 && board[1][1] == '5')
             board[1][1] = mark;
 
-        else if (choice == 6 && board[1][2] == '5')
-            board[1][2]  = mark;
+        else if (choice == 6 && board[1][2] == '6')
+            board[1][2] = mark;
 
-        else if (choice == 7 && board[2][0] == '6')
+        else if (choice == 7 && board[2][0] == '7')
             board[2][0] = mark;
 
-        else if (choice == 8 && board[2][1] == '7')
+        else if (choice == 8 && board[2][1] == '8')
             board[2][1] = mark;
 
-        else if (choice == 9 && board[2][2] == '8')
+        else if (choice == 9 && board[2][2] == '9')
             board[2][2] = mark;
 
         else
@@ -214,32 +211,23 @@ int playgame(char board[][n])
 {
     if (square[1] == square[2] && square[2] == square[3])
         return 1;
-
     else if (square[4] == square[5] && square[5] == square[6])
         return 1;
-
     else if (square[7] == square[8] && square[8] == square[9])
         return 1;
-
     else if (square[1] == square[4] && square[4] == square[7])
         return 1;
-
     else if (square[2] == square[5] && square[5] == square[8])
         return 1;
-
     else if (square[3] == square[6] && square[6] == square[9])
         return 1;
-
     else if (square[1] == square[5] && square[5] == square[9])
         return 1;
-
     else if (square[3] == square[5] && square[5] == square[7])
         return 1;
-
     else if (square[1] != '1' && square[2] != '2' && square[3] != '3' &&
         square[4] != '4' && square[5] != '5' && square[6] != '6' && square[7]
         != '7' && square[8] != '8' && square[9] != '9')
-
         return 0;
     else
         return  -1;
@@ -248,7 +236,7 @@ int main()
 {
     load();
     showinstructions();
-    delay(2);
+   // Delay(2);
     getch();
     playgame(board);
     return 0;
